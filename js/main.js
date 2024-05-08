@@ -40,9 +40,11 @@ const personnes = [
 
 // Récupère le 1er formulaire du document
 const formulaire = document.querySelector('form');
-// Récupère le champ texte #nom
+// Récupère les champs textes
 const txtNom = document.querySelector('#nom');
 const txtPrenom = document.querySelector('#prenom');
+const txtAge = document.querySelector('#age');
+const txtLocalite = document.querySelector('#localite');
 // Récupère le premier corps de tableau <tbody>
 const tableBody = document.querySelector('tbody');
 // Test si la récupération des éléments HTML est OK
@@ -57,10 +59,14 @@ formulaire.addEventListener('submit', function envoyer(event) {
         <tr>
             <td>${ txtPrenom.value }</td>
             <td>${ txtNom.value }</td>
-            <td></td>
-            <td></td>
+            <td>${ txtAge.value }</td>
+            <td>${ txtLocalite.value }</td>
         </tr>
     `;
     // Ajouter la nouvelle personne à la fin du <tbody>
     tableBody.innerHTML += nouvelleLigne;
+    // Vide tous les champs du formulaire
+    formulaire.reset();
+    // Focus sur le prénom
+    txtPrenom.focus();
 });
