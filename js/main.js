@@ -50,6 +50,12 @@ const tableBody = document.querySelector('tbody');
 // Test si la récupération des éléments HTML est OK
 console.log(formulaire, txtNom, tableBody);
 
+// Fonction qui créer un tableau HTML à partir du tableau JS des personnes
+function construireTableau() {
+
+}
+
+
 // Ecouter l'envoi du formulaire
 formulaire.addEventListener('submit', function envoyer(event) {
    // Stopper l'envoi du formulaire
@@ -70,3 +76,20 @@ formulaire.addEventListener('submit', function envoyer(event) {
     // Focus sur le prénom
     txtPrenom.focus();
 });
+
+// Ecoute la fin de chargement de la page
+window.addEventListener('load', function () {
+    construireTableau();
+});
+
+
+
+
+
+
+
+
+
+
+
+
