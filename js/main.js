@@ -5,7 +5,7 @@
 
 'use strict';
 
-const personnes = [
+const tabPersonnes = [
     {
         nom: 'Doe',
         prenom: 'John',
@@ -52,7 +52,17 @@ console.log(formulaire, txtNom, tableBody);
 
 // Fonction qui créer un tableau HTML à partir du tableau JS des personnes
 function construireTableau() {
-
+    // Parcours le tableau d'objets tabPersonnes
+    for(let personne of tabPersonnes) {
+        tableBody.innerHTML += `
+        <tr>
+            <td>${ personne.prenom }</td>
+            <td>${ personne.nom }</td>
+            <td>${ personne.age }</td>
+            <td>${ personne.localite }</td>
+        </tr>
+    `;
+    }
 }
 
 
