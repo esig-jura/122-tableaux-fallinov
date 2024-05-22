@@ -41,6 +41,7 @@ const tabPersonnes = [
 // Récupère le 1er formulaire du document
 const formulaire = document.querySelector('form');
 // Récupère les champs textes
+const txtRechercher = document.querySelector('#rechercher');
 const txtNom = document.querySelector('#nom');
 const txtPrenom = document.querySelector('#prenom');
 const txtAge = document.querySelector('#age');
@@ -48,14 +49,27 @@ const txtLocalite = document.querySelector('#localite');
 // Récupère le premier corps de tableau <tbody>
 const tableBody = document.querySelector('tbody');
 // Test si la récupération des éléments HTML est OK
-console.log(formulaire, txtNom, tableBody);
+console.log(formulaire, txtNom, tableBody, txtRechercher);
+
+// Fonction qui filtre le tableau par prénom
+function filtreTableau () {
+    // Si on recherche rien on retourne tout tableau
+    if(txtRechercher.value === '') {
+        return tabPersonnes;
+    }
+    return tabPersonnes.filter(function(obj){
+        return obj.prenom === 'John';
+    });
+}
 
 // Fonction qui créer un tableau HTML à partir du tableau JS des personnes
 function construireTableau() {
     // Vide le tableau
     tableBody.innerHTML = '';
+   // Filtre le tableau tabPersonnes
+   let tabFiltre = filtreTableau();
     // Parcours le tableau d'objets tabPersonnes
-    for(let personne of tabPersonnes) {
+    for(let personne of tabFiltre) {
         tableBody.innerHTML += `
         <tr>
             <td>${ personne.prenom }</td>
@@ -83,6 +97,11 @@ formulaire.addEventListener('submit', function envoyer(event) {
     formulaire.reset();
     // Focus sur le prénom
     txtPrenom.focus();
+});
+
+// Ectouter le changement de valeur du champ de recherche
+txtRechercher.addEventListener('input', function () {
+   construireTableau();
 });
 
 // Ecoute la fin de chargement de la page
