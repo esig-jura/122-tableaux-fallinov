@@ -324,13 +324,24 @@ function filtreTableau () {
     });
 }
 
+// Fonction qui trie un tableau par prénom
+function trieTableau (tab) {
+    tab.sort(function(a, b) {
+        // return a.age - b.age; // Si résultat est plus grand que 0 on inverse a et b
+        // localeCompare retoure -1 si la chaine B est plus grande 1 si plus petite
+        return a.prenom.localeCompare(b.prenom, 'fr');
+    });
+}
+
 // Fonction qui créer un tableau HTML à partir du tableau JS des personnes
 function construireTableau() {
     // Vide le tableau
     tableBody.innerHTML = '';
    // Filtre le tableau tabPersonnes
    let tabFiltre = filtreTableau();
-    // Parcours le tableau d'objets tabPersonnes
+   // Trie le tableau
+   trieTableau(tabFiltre);
+   // Parcours le tableau d'objets tabPersonnes
     for(let personne of tabFiltre) {
         tableBody.innerHTML += `
         <tr>
