@@ -52,6 +52,8 @@ console.log(formulaire, txtNom, tableBody);
 
 // Fonction qui créer un tableau HTML à partir du tableau JS des personnes
 function construireTableau() {
+    // Vide le tableau
+    tableBody.innerHTML = '';
     // Parcours le tableau d'objets tabPersonnes
     for(let personne of tabPersonnes) {
         tableBody.innerHTML += `
@@ -65,22 +67,18 @@ function construireTableau() {
     }
 }
 
-
 // Ecouter l'envoi du formulaire
 formulaire.addEventListener('submit', function envoyer(event) {
    // Stopper l'envoi du formulaire
     event.preventDefault();
-    // Crée le code HTML da la nouvelle ligne
-    let nouvelleLigne = `
-        <tr>
-            <td>${ txtPrenom.value }</td>
-            <td>${ txtNom.value }</td>
-            <td>${ txtAge.value }</td>
-            <td>${ txtLocalite.value }</td>
-        </tr>
-    `;
-    // Ajouter la nouvelle personne à la fin du <tbody>
-    tableBody.innerHTML += nouvelleLigne;
+    // Ajoute un objet à tabPersonnes
+    tabPersonnes.push({
+        prenom: txtPrenom.value,
+        nom: txtNom.value,
+        age: txtAge.value,
+        localite: txtLocalite.value,
+    });
+    construireTableau();
     // Vide tous les champs du formulaire
     formulaire.reset();
     // Focus sur le prénom
