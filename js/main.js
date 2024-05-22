@@ -7,7 +7,7 @@
 
 const tabPersonnes = [
     {
-        nom: 'Doe',
+        nom: 'Smith',
         prenom: 'John',
         age: 25,
         localite: 'New York',
@@ -51,14 +51,17 @@ const tableBody = document.querySelector('tbody');
 // Test si la récupération des éléments HTML est OK
 console.log(formulaire, txtNom, tableBody, txtRechercher);
 
-// Fonction qui filtre le tableau par prénom
+// Fonction qui filtre le tableau par prénom et nom
 function filtreTableau () {
     // Si on recherche rien on retourne tout tableau
     if(txtRechercher.value === '') {
         return tabPersonnes;
     }
     return tabPersonnes.filter(function(obj){
-        return obj.prenom === 'John';
+        return obj.prenom.toLowerCase()
+            .includes(txtRechercher.value.toLowerCase()) ||
+            obj.nom.toLowerCase()
+                .includes(txtRechercher.value.toLowerCase());
     });
 }
 
